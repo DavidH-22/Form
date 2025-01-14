@@ -1,6 +1,7 @@
 const express = require('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const app = express();
 const port = 3000;
@@ -20,7 +21,7 @@ db.connect((err) => {
     console.log('Connected to MySql database');
 });
 
-const cors=require("cors");
+
 const corsOptions ={
     origin:'*',
     credentials:true,
@@ -43,6 +44,16 @@ app.post('/submit', (req, res) => {
             return;
         }
         res.status(200).send('Submit completed');
+    });
+});
+
+app.get('/table', (req, res)=> {
+    const query = 'SELECT * FROM form';
+    db.query(query, (error, results) => {
+        if (error) {
+            return res.status(500).send(error);
+        }
+        res.json(results);
     });
 });
 
