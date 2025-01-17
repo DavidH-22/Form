@@ -1,25 +1,38 @@
 const express = require('express');
-const mysql = require('mysql2');
+const {Pool} = require('pg');
+//const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
 const port = 3000;
 
-const db =mysql.createConnection({
-    host: '127.0.0.1',
-    user: 'root',
-    password: '',
-    database: 'db'
-})
+const pool = new Pool({
+    connectionString: process.env.POSTGRES_URL,
+});
 
-db.connect((err) => {
+//const db =mysql.createConnection({
+    //host: '127.0.0.1',
+   // user: 'root',
+    //password: '',
+    //database: 'db'
+//})
+
+pool.connect((err) => {
     if (err){
         console.error('Error connecting to the database:', err);
         return;
     }
-    console.log('Connected to MySql database');
+    console.log('Connected to Supabase Postgres');
 });
+
+//db.connect((err) => {
+    //if (err){
+       // console.error('Error connecting to the database:', err);
+       // return;
+   // }
+    //console.log('Connected to MySql database');
+//});
 
 
 const corsOptions ={
