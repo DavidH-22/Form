@@ -72,7 +72,7 @@ app.get('/table', (req, res)=> {
 });
 
 app.get('/api', (req, res) => {
-    res.json({messgae: 'Hello from server!'});
+    res.json({message: 'Hello from server!'});
 });
 
 app.listen(port, () => {
