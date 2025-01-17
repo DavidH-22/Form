@@ -19,6 +19,7 @@ const pool = new Pool({
     //database: 'db'
 //})
 
+
 pool.connect((err) => {
     if (err){
         console.error('Error connecting to the database:', err);

@@ -10,7 +10,7 @@ const FormTable = () => {
               ? 'https://form-six-flax.vercel.app'
               : 'http://localhost:3000'
         useEffect(() => {
-            fetch ('${apiUrl}/table',{
+            fetch (`${apiUrl}/table`,{
                 method: 'GET',
                headers: {
                    'content-type': 'application/json',

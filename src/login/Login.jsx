@@ -33,7 +33,7 @@ function FormComponent(){
     ? 'https://form-six-flax.vercel.app/'
     : 'http://localhost:3000'
 
-    const response = await fetch('${apiUrl}/submit', {
+    const response = await fetch(`${apiUrl}/submit`, {
       method: 'POST',
       headers: {
         'content-Type': 'application/json',
