@@ -50,7 +50,7 @@ app.post('/submit', (req, res) => {
     const { Username, Email, Address, Gender } = req.body;
 
     const query = 'INSERT INTO form ( Username, Email, Address, Gender) VALUES (?,?,?,?)';
-    db.query(query, [ Username, Email, Address, Gender], (err, result) => {
+    pool.query(query, [ Username, Email, Address, Gender], (err, result) => {
         if (err) {
             console.error('Error inserting data:', err);
             res.status(500).send('Error inserting data');
@@ -62,7 +62,7 @@ app.post('/submit', (req, res) => {
 
 app.get('/table', (req, res)=> {
     const query = 'SELECT * FROM form';
-    db.query(query, (error, results) => {
+    pool.query(query, (error, results) => {
         if (error) {
             return res.status(500).send(error);
         }
