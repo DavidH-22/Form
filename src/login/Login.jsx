@@ -29,7 +29,11 @@ function FormComponent(){
       Gender: formData.Gender,
     }
 
-    const response = await fetch('http://localhost:3000/submit', {
+    const apiUrl = process.env.NODE_ENV === 'production'
+    ? 'https://form-six-flax.vercel.app/'
+    : 'http://localhost:3000'
+
+    const response = await fetch('${apiUrl}/submit', {
       method: 'POST',
       headers: {
         'content-Type': 'application/json',

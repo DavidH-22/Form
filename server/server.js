@@ -3,6 +3,7 @@ const {Pool} = require('pg');
 //const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
 const port = 3000;
@@ -49,7 +50,7 @@ app.use(cors(corsOptions))
 app.post('/submit', (req, res) => {
     const { Username, Email, Address, Gender } = req.body;
 
-    const query = 'INSERT INTO form ( Username, Email, Address, Gender) VALUES (?,?,?,?)';
+    const query = 'INSERT INTO form ( Username, Email, Address, Gender) VALUES ($1,$2,$3,$4)';
     pool.query(query, [ Username, Email, Address, Gender], (err, result) => {
         if (err) {
             console.error('Error inserting data:', err);

@@ -6,10 +6,11 @@ import {IoSunnyOutline} from "react-icons/io5";
 
 const FormTable = () => {
         const [data, setData] = useState([]);
-       
-
+       const apiUrl = process.env.NODE_ENV === 'production'
+              ? 'https://form-six-flax.vercel.app/'
+              : 'http://localhost:3000'
         useEffect(() => {
-            fetch ('http://localhost:3000/table',{
+            fetch ('${apiUrl}/table',{
                 method: 'GET',
                headers: {
                    'content-type': 'application/json',
